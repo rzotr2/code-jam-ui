@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.http.get('https://code-jam-serv-1c40d7e358ba.herokuapp.com/user').subscribe(console.log);
+    this.http.get('/user').subscribe(console.log);
   }
 }
