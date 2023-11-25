@@ -5,6 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --base-href \"https://rzotr2.github.io/code-jam-ui/\"",
+    "deploy": "npx angular-cli-ghpages --dir=dist/code-jam-ui",
+    "build-and-deploy": "npm run build:prod && npm run deploy",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -27,6 +30,7 @@
     "@angular/cli": "^16.2.9",
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",
+    "angular-cli-ghpages": "^1.0.7",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
