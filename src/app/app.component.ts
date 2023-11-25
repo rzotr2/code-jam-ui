@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
+import {environment} from '../environments/environment';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,6 +17,6 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.http.get('https://code-jam-serv-1c40d7e358ba.herokuapp.com/books').subscribe(console.log);
+    this.http.get(`${environment.apiUrl}/books`).subscribe(console.log);
   }
 }
