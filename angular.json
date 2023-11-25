@@ -63,11 +63,6 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "code-jam-ui:build",
-            "proxyConfig": "proxy.conf.js",
-            "port": 4200
-          },
           "configurations": {
             "production": {
               "browserTarget": "code-jam-ui:build:production"
