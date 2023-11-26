@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {Observable, tap} from 'rxjs';
 
-import {environment} from '../environments/environment';
+import {environment} from '../../../environments/environment';
 
 export interface Book {
   name: string;
@@ -22,8 +22,21 @@ export class DataService {
   ) {
   }
 
-  public loadAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${environment.apiUrl}/books`).pipe(
+  public loadAll(name?: string, limit?: number): Observable<Book[]> {
+    const queryParams: {
+      name?: string,
+      limit?: number
+    } = {};
+
+    if (name) {
+      queryParams.name = name;
+    }
+
+    if (limit) {
+      queryParams.limit = limit;
+    }
+
+    return this.http.get<Book[]>(`${environment.apiUrl}/books`, {params: queryParams}).pipe(
       tap(books => this.state$.set(books)),
     );
   }

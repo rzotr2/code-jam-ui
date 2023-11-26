@@ -12,14 +12,32 @@ $spacers: (
   6: $spacer * 6
 );
 
+// Global
+/*Null-style*/
+*{padding: 0;margin: 0;border: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height: 100%;width: 100%;font-size: 100%;line-height: 1;font-size: 14px;
+  -ms-text-size-adjust: 100%;-moz-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
+input,button,textarea{font-family:inherit;}input::-ms-clear{display:none;}
+button{cursor: pointer;} button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;} a:hover{text-decoration: none;}
+ul li{list-style: none;} img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*--------------------*/
+
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
+
 // Variables
 $jam-primary: #1e252b;
+$jam-secondary: #ff6e30;
 
 body {
   background-color: $jam-primary;
@@ -34,15 +52,30 @@ input {
   border: none;
 }
 
-.books-section__card {
-  min-height: 250px;
-  min-width: 30%;
-  max-width: 30%;
-  &:hover {
-    background-color: lighten($jam-primary, 5%);
+footer {
+  min-height: 170px;
+}
+
+.btn-custom {
+  color: #fff;
+  background-color: $jam-secondary;
+  padding: 0.7rem;
+  border-radius: 5px;
+  text-decoration: none;
+
+  &:hover, focus {
+    background-color: darken($jam-secondary, 5%);
+    border: darken($jam-secondary, 5%);
+  }
+
+  &:active {
+    background-color: lighten($jam-secondary, 5%);
+    border: lighten($jam-secondary, 5%);
+  }
+
+  &:disabled {
+    background-color: darken($jam-secondary, 10%);
+    border: darken($jam-secondary, 10%);
   }
 }
 
-.book-description__description {
-  white-space: pre-wrap;
-}

@@ -1,8 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-
-import {Subscription} from 'rxjs';
-
-import {DataService} from './data.service';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,36 +6,6 @@ import {DataService} from './data.service';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit, OnDestroy {
-  public subscriptions = new Subscription();
+export class AppComponent {
 
-  constructor(
-    public dataService: DataService,
-  ) {
-  }
-
-  public ngOnInit(): void {
-    this.subscriptions.add(
-      this.dataService.loadAll().subscribe(),
-    );
-  }
-
-  public create(): void {
-    this.subscriptions.add(
-      this.dataService.create({
-        name: `${Math.random()}`,
-        url: 'https://test-audio.com'
-      }).subscribe(),
-    );
-  }
-
-  public delete(id: string): void {
-    this.subscriptions.add(
-      this.dataService.delete(id).subscribe(),
-    );
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
 }

@@ -1,0 +1,33 @@
+@import "../../../../../styles";
+
+.card-container {
+  min-height: 200px;
+
+  opacity: 0.5;
+  transform: scale(1);
+  transition: opacity ease-in-out 0.2s, transform ease-in-out 0.2s;
+
+  &:hover, focus {
+    background-color: lighten($jam-primary, 5%);
+    border: darken($jam-secondary, 5%);
+
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    background-color: lighten($jam-secondary, 5%);
+    border: lighten($jam-secondary, 5%);
+  }
+
+  &:disabled {
+    background-color: darken($jam-secondary, 10%);
+    border: darken($jam-secondary, 10%);
+  }
+}
+
+.book-description__description {
+  white-space: pre-wrap;
+}
+
+
