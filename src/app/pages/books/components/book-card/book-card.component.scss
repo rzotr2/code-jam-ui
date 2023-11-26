@@ -1,4 +1,4 @@
-@import "../../../../../styles";
+@import "../../../../../variables";
 
 .card-container {
   min-height: 200px;
@@ -9,25 +9,11 @@
 
   &:hover, focus {
     background-color: lighten($jam-primary, 5%);
-    border: darken($jam-secondary, 5%);
 
     opacity: 1;
     transform: scale(1.1);
   }
-
-  &:active {
-    background-color: lighten($jam-secondary, 5%);
-    border: lighten($jam-secondary, 5%);
-  }
-
-  &:disabled {
-    background-color: darken($jam-secondary, 10%);
-    border: darken($jam-secondary, 10%);
-  }
 }
 
-.book-description__description {
-  white-space: pre-wrap;
-}
 
 

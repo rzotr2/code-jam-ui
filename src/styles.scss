@@ -34,10 +34,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
-
-// Variables
-$jam-primary: #1e252b;
-$jam-secondary: #ff6e30;
+@import "variables.scss";
 
 body {
   background-color: $jam-primary;
@@ -78,4 +75,3 @@ footer {
     border: darken($jam-secondary, 10%);
   }
 }
-
