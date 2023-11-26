@@ -1,3 +1,5 @@
+<router-outlet />
+
 <div *ngFor="let book of dataService.state$()" class="card my-3 p-3 text-center">
   <span class="mb-2">{{book.name}}</span>
   <button (click)="delete(book.id)" class="btn btn-danger">Delete</button>
