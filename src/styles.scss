@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Maps
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 6
+);
+
+/* Importing Bootstrap SCSS file. */
+@import "node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+// Variables
+$jam-primary: #1e252b;
+
+body {
+  background-color: $jam-primary;
+}
+
+.bg-jam-primary {
+  background-color: $jam-primary;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+.books-section__card {
+  min-height: 250px;
+  min-width: 30%;
+  max-width: 30%;
+  &:hover {
+    background-color: lighten($jam-primary, 5%);
+  }
+}
+
+.book-description__description {
+  white-space: pre-wrap;
+}
