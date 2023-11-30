@@ -1,26 +1,23 @@
-import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import * as $ from 'jquery'
+import {AfterContentInit, Component} from '@angular/core';
+import {BookComponent} from "../book.component";
+import {Book} from "../../../services/data-services/data.service";
+
+
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements AfterViewInit {
-  @ViewChild('draggablePoint') draggablePoint: ElementRef;
-  @ViewChild('audioProgressBar') audioProgressBar: ElementRef
+export class PlayerComponent implements AfterContentInit {
+  public book: Book;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    public bookComponent: BookComponent
+  ) {}
 
-  ngAfterViewInit() {
-    $(this.draggablePoint.nativeElement).draggable({
-      axis: 'x',
-      containment: "#audio-progress",
-      drag: () => {
-        const offset = $(this.draggablePoint.nativeElement).offset();
-        const xPos = (100 * parseFloat($(this.draggablePoint.nativeElement).css("left"))) / (parseFloat($(this.draggablePoint.nativeElement).parent().css("width"))) + "%";
-
-        this.renderer.setStyle(this.audioProgressBar.nativeElement, 'width', xPos);
-      }});
+  ngAfterContentInit() {
+    this.book = this.bookComponent.book;
+    console.log(this.book.url)
   }
 }
