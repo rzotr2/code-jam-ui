@@ -47,6 +47,12 @@ export class DataService {
     );
   }
 
+  public getBook(id): Observable<Book> {
+    return this.http.get<Book>(`${environment.apiUrl}/books/${id}`).pipe(
+      tap(book => this.state$.update(books => [...books, book])),
+    );
+  }
+
   public delete(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/books/${id}`).pipe(
       tap(() => this.state$.update(books => books.filter(book => book.id !== id))),

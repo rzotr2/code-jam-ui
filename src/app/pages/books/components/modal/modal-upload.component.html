@@ -34,14 +34,16 @@
       <div class="chapter-name__title mb-1">
       <span class="chapter-text__name bg-dark px-3 py-2 text-white rounded-top-3">DESCRIPTION</span>
       </div>
-      <div class="chapter-name__container border border-dark-subtle custom-border px-3 py-2 fs-5 mb-4">
-        <st-editor formControlName="description"></st-editor>
+      <div class="chapter-name__container border border-dark-subtle custom-border mb-2 overflow-hidden">
+        <textarea class="custom-textarea" formControlName="description"
+          placeholder="Enter book description..."
+        ></textarea>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <div class="footer__button-group px-2">
-      <button class="footer-button btn bg-accordion-color me-2 text-white" (click)="bsModalRef.hide()">Відмінити</button>
+    <div class="footer__button-group px-2 d-flex align-items-center">
+      <button class="footer-button btn-custom  me-2 text-white" (click)="bsModalRef.hide()">Відмінити</button>
       <button type="submit" class="footer-button btn btn-dark">Зберегти</button>
     </div>
   </div>

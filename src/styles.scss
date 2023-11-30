@@ -9,7 +9,8 @@ $spacers: (
   3: $spacer,
   4: $spacer * 1.5,
   5: $spacer * 3,
-  6: $spacer * 6
+  6: $spacer * 6,
+  7: $spacer * 10
 );
 
 // Global
@@ -49,6 +50,16 @@ input {
   border: none;
 }
 
+.card-title__logo {
+
+}
+
+.book-card__img {
+  max-width: 100px;
+  width: 100%;
+  height: auto;
+}
+
 footer {
   min-height: 170px;
 }
@@ -56,7 +67,7 @@ footer {
 .btn-custom {
   color: #fff;
   background-color: $jam-secondary;
-  padding: 0.7rem;
+  padding: 0.5250rem;
   border-radius: 5px;
   text-decoration: none;
 
@@ -75,3 +86,4 @@ footer {
     border: darken($jam-secondary, 10%);
   }
 }
+
