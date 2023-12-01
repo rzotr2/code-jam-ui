@@ -98,7 +98,7 @@ export class AudioStreamService {
 
   private readonly audio = new Audio();
 
-  private readonly eventsStream$ = this.getEventsStream();
+  public readonly eventsStream$ = this.getEventsStream();
 
   public readonly isPlaying$: Observable<boolean> = this.eventsStream$.pipe(
     filterEvent(RxAudio.RX_AUDIO_EVENT_TYPES.PLAY, RxAudio.RX_AUDIO_EVENT_TYPES.PAUSE),

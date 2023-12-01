@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center h-100">
   <div class="text-center w-50">
     <ng-container *ngIf="audioStreamService.state$ | async as audioState">
-      <p class="d-flex justify-content-between">
+      <p class="d-flex justify-content-between text-white">
         <span>{{audioState.currentTime | formatTime}}</span>
         <span>{{audioState.duration | formatTime}}</span>
       </p>
