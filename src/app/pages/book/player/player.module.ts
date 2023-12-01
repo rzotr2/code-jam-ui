@@ -1,10 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+
 import {PlayerComponent} from './player.component';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 @NgModule({
   declarations: [
-    PlayerComponent
+    PlayerComponent,
+    FormatTimePipe
   ],
   exports: [
     PlayerComponent

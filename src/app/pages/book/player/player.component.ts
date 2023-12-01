@@ -1,26 +1,38 @@
-import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import * as $ from 'jquery'
+import {AfterViewInit, ChangeDetectionStrategy, Component} from '@angular/core';
+
+import {AudioStreamService, RxAudio} from './services/audio-stream.service';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+  styleUrls: ['./player.component.scss'],
+  providers: [AudioStreamService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerComponent implements AfterViewInit {
-  @ViewChild('draggablePoint') draggablePoint: ElementRef;
-  @ViewChild('audioProgressBar') audioProgressBar: ElementRef
+  constructor(
+    public audioStreamService: AudioStreamService,
+  ) {
+  }
 
-  constructor(private renderer: Renderer2) {}
+  public ngAfterViewInit() {
+    this.audioStreamService.setSource('https://www.info.kh.ua/wp-content/uploads/2023/03/%D0%86.%D0%9A%D0%BE%D1%82%D0%BB%D1%8F%D1%80%D0%B5%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9-%D0%95%D0%BD%D0%B5%D1%97%D0%B4%D0%B0.mp3');
+  }
 
-  ngAfterViewInit() {
-    $(this.draggablePoint.nativeElement).draggable({
-      axis: 'x',
-      containment: "#audio-progress",
-      drag: () => {
-        const offset = $(this.draggablePoint.nativeElement).offset();
-        const xPos = (100 * parseFloat($(this.draggablePoint.nativeElement).css("left"))) / (parseFloat($(this.draggablePoint.nativeElement).parent().css("width"))) + "%";
+  public togglePlay(isPlaying: boolean): void {
+    if (isPlaying) {
+      this.audioStreamService.pause();
+    } else {
+      this.audioStreamService.play();
+    }
+  }
 
-        this.renderer.setStyle(this.audioProgressBar.nativeElement, 'width', xPos);
-      }});
+  public seekByPercent(audioState: RxAudio.State, event: MouseEvent): void {
+    const progressBtn = (event.currentTarget as HTMLButtonElement);
+
+    const clickPosition = event.pageX - progressBtn.offsetLeft;
+    const actualWidth = progressBtn.offsetWidth;
+
+    this.audioStreamService.seekTo(audioState.duration * clickPosition / actualWidth);
   }
 }

@@ -1,1 +1,7 @@
+.progress {
+  height: 2rem;
+}
 
+.progress-inner, .progress-outer {
+  height: inherit;
+}
