@@ -1,0 +1,30 @@
+<header>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <a mat-stroked-button
+         #homeLink="routerLinkActive"
+         routerLinkActive
+         routerLink="home"
+         [color]="homeLink.isActive ? 'primary' : null">
+        RxAudio
+      </a>
+      <span class="spacer"></span>
+      <nav>
+        <a mat-button
+           #loginLink="routerLinkActive"
+           routerLinkActive
+           routerLink="login"
+           [color]="loginLink.isActive ? 'primary' : null">
+          Login
+        </a>
+        <a mat-button
+           #registerLink="routerLinkActive"
+           routerLinkActive
+           routerLink="register"
+           [color]="registerLink.isActive ? 'primary' : null">
+          Register
+        </a>
+      </nav>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>

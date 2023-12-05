@@ -1,0 +1,5 @@
+<ng-container *ngIf="shouldShow">
+  <ng-container *ngFor="let error of validationErrors | keyvalue">
+    <mat-error *ngIf="errorsMap[error.key]">{{errorsMap[error.key]}}</mat-error>
+  </ng-container>
+</ng-container>
