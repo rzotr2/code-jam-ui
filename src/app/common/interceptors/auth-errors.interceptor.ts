@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import {Router} from '@angular/router';
 
-import {catchError, Observable, of} from 'rxjs';
+import {catchError, Observable} from 'rxjs';
 
 @Injectable()
 export class AuthErrorsInterceptor implements HttpInterceptor {
@@ -22,9 +22,9 @@ export class AuthErrorsInterceptor implements HttpInterceptor {
                 if (httpErrorResponse && httpErrorResponse.status === 401) {
                     this.router.navigate(['/login']);
 
-                    return of(httpErrorResponse);
+                    throw httpErrorResponse;
                 } else {
-                    return of(httpErrorResponse);
+                    throw httpErrorResponse;
                 }
             }),
         );

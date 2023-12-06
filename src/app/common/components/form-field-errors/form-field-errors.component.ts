@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input} from '@angular/core';
 import {ValidationErrors} from '@angular/forms';
 
 import {APP_CONSTANTS, AppConstantsType} from '../../constants';
@@ -6,7 +6,8 @@ import {APP_CONSTANTS, AppConstantsType} from '../../constants';
 @Component({
   selector: 'app-form-field-errors',
   templateUrl: './form-field-errors.component.html',
-  styleUrls: ['./form-field-errors.component.scss']
+  styleUrls: ['./form-field-errors.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldErrorsComponent {
   @Input() shouldShow = true;
