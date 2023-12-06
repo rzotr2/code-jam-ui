@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
+import {logoutResolver} from '@common';
+
 import {RegisterComponent} from './register.component';
 
 const routes: Routes = [
-  {path: '', component: RegisterComponent}
+  {path: '', resolve: [logoutResolver], component: RegisterComponent}
 ];
 
 @NgModule({

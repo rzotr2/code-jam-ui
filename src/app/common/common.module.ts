@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {FormFieldErrorsComponent} from './components/form-field-errors/form-field-errors.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -25,6 +26,7 @@ import {FooterComponent} from './components/footer/footer.component';
   imports: [
     CommonModule,
     MatToolbarModule,
+    MatSnackBarModule,
     MatIconModule,
     MatButtonModule,
     RouterLink,

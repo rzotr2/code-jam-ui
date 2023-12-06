@@ -20,8 +20,15 @@ const PasswordErrorsMap: Record<string, string> = {
   pattern: 'Password is too weak'
 }
 
+const RepeatPasswordErrorsMap: Record<string, string> = {
+  ...DefaultErrorsMap,
+  required: 'Required',
+  notEqual: `Passwords don't match`
+}
+
 export const ErrorMaps = {
   DefaultErrorsMap,
   UsernameErrorsMap,
   PasswordErrorsMap,
+  RepeatPasswordErrorsMap,
 };

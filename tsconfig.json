@@ -24,7 +24,13 @@
     ],
     "paths": {
       "@common": ["src/app/common"],
-      "@common/*": ["src/app/common/*"]
+      "@common/*": ["src/app/common/*"],
+      "@auth-dl": ["src/app/data-layers/auth"],
+      "@auth-dl/*": ["src/app/data-layers/auth/*"],
+      "@user-dl": ["src/app/data-layers/user"],
+      "@user-dl/*": ["src/app/data-layers/user/*"],
+      "@env": ["src/environments/environment.ts"],
+      "@dl-common": ["src/app/data-layers/common"],
     }
   },
   "angularCompilerOptions": {

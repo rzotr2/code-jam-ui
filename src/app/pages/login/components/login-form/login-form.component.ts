@@ -1,6 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 
-import {LoginFormBuilderService} from './services/login-form-builder.service';
+import {AuthRestService} from '@auth-dl';
+
+import {LoginFormBuilderService, LoginFormGroup} from './services/login-form-builder.service';
 
 @Component({
   selector: 'app-login-form',
@@ -21,6 +25,22 @@ export class LoginFormComponent {
 
   constructor(
     private loginFormBuilderService: LoginFormBuilderService,
+    private authRestService: AuthRestService,
+    private router: Router
   ) {
+  }
+
+  public onSubmit(loginFormGroup: FormGroup<LoginFormGroup>): void {
+    if (loginFormGroup.valid) {
+      const formValue = loginFormGroup.getRawValue();
+
+      this.authRestService.login(formValue).subscribe((result) => {
+        if (!result.failed) {
+          localStorage.setItem('token', result.response.token);
+
+          this.router.navigate(['/home']);
+        }
+      });
+    }
   }
 }
