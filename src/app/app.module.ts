@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
@@ -28,6 +29,7 @@ import {AppComponent} from './app.component';
     AppRoutingModule,
     AppCommonModule,
     UserDataModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     { provide: APP_CONSTANTS, useValue: CONSTANTS },
