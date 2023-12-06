@@ -17,6 +17,7 @@ export * from './guards/auth.guard';
 
 /* Interceptors */
 export * from './interceptors/request-headers.interceptor';
+export * from './interceptors/auth-errors.interceptor';
 
 /* Resolvers */
 export * from './reslovers/logout.resolver';

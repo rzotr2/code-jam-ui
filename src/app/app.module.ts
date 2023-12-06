@@ -8,7 +8,7 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
-import {RequestHeadersInterceptor} from '@common';
+import {RequestHeadersInterceptor, AuthErrorsInterceptor} from '@common';
 import {APP_CONSTANTS, CONSTANTS, AppCommonModule} from '@common';
 import {UserDataModule} from '@user-dl';
 
@@ -33,7 +33,8 @@ import {AppComponent} from './app.component';
   ],
   providers: [
     { provide: APP_CONSTANTS, useValue: CONSTANTS },
-    { provide: HTTP_INTERCEPTORS, useClass: RequestHeadersInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: RequestHeadersInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthErrorsInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
