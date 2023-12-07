@@ -1,4 +1,4 @@
 export interface User {
-    name: string;
-    about: string;
+    name?: string;
+    about?: string;
 }

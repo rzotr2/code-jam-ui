@@ -6,25 +6,98 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   display: flex;
 }
 
+.f-wrap {
+  flex-wrap: wrap;
+}
+
 .w-full {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .w-50 {
   width: 50%;
+  box-sizing: border-box;
 }
 
 .w-75 {
   width: 75%;
+  box-sizing: border-box;
 }
 
 .w-25 {
   width: 25%;
+  box-sizing: border-box;
 }
 
 .w-33 {
   width: 33%;
+  box-sizing: border-box;
 }
+
+.w-lg-full {
+  @media screen and (min-width: 992px) {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.w-lg-50 {
+  @media screen and (min-width: 992px) {
+    width: 50%;
+    box-sizing: border-box;
+  }
+}
+
+.w-lg-75 {
+  @media screen and (min-width: 992px) {
+    width: 75%;
+    box-sizing: border-box;
+  }
+}
+
+.w-lg-25 {
+  @media screen and (min-width: 992px) {
+    width: 25%;
+    box-sizing: border-box;
+  }
+}
+
+.w-lg-33 {
+  @media screen and (min-width: 992px) {
+    width: 33%;
+    box-sizing: border-box;
+  }
+}
+
+.p-0 {padding: 0;}
+.p-1 {padding: 0.5rem;}
+.p-2 {padding: 1rem;}
+.p-3 {padding: 1.5rem;}
+.p-4 {padding: 2rem;}
+.p-5 {padding: 3rem;}
+
+.m-0 {margin: 0;}
+.m-1 {margin: 0.5rem;}
+.m-2 {margin: 1rem;}
+.m-3 {margin: 1.5rem;}
+.m-4 {margin: 2rem;}
+.m-5 {margin: 3rem;}
+
+.px-0 {padding-left: 0; padding-right: 0;}
+.px-1 {padding-left: 0.5rem; padding-right: 0.5rem;}
+.px-2 {padding-left: 1rem; padding-right: 1rem;}
+.px-3 {padding-left: 1.5rem; padding-right: 1.5rem;}
+.px-4 {padding-left: 2rem; padding-right: 2rem;}
+.px-5 {padding-left: 3rem; padding-right: 3rem;}
+
+.py-0 {padding-bottom: 0; padding-top: 0;}
+.py-1 {padding-bottom: 0.5rem; padding-top: 0.5rem;}
+.py-2 {padding-bottom: 1rem; padding-top: 1rem;}
+.py-3 {padding-bottom: 1.5rem; padding-top: 1.5rem;}
+.py-4 {padding-bottom: 2rem; padding-top: 2rem;}
+.py-5 {padding-bottom: 3rem; padding-top: 3rem;}
+
 
 .h-100 {
   height: calc(100vh - 64px - 20px);

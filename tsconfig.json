@@ -29,6 +29,8 @@
       "@auth-dl/*": ["src/app/data-layers/auth/*"],
       "@user-dl": ["src/app/data-layers/user"],
       "@user-dl/*": ["src/app/data-layers/user/*"],
+      "@books-dl": ["src/app/data-layers/books"],
+      "@books-dl/*": ["src/app/data-layers/books/*"],
       "@env": ["src/environments/environment.ts"],
       "@dl-common": ["src/app/data-layers/common"],
     }

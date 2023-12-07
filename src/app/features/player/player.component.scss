@@ -1,7 +1,29 @@
-.progress {
-  height: 2rem;
+:host {
+  width: 100%;
 }
 
-.progress-inner, .progress-outer {
+.progress {
+  height: 2rem;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: #424242;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress-inner {
   height: inherit;
+}
+
+.progress-inner {
+  background-color: #673ab7;
+}
+
+.controls {
+  button:not(:last-child) {
+    margin-right: 0.5rem;
+  }
 }

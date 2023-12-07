@@ -10,6 +10,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
 import {RequestHeadersInterceptor, AuthErrorsInterceptor} from '@common';
 import {APP_CONSTANTS, CONSTANTS, AppCommonModule} from '@common';
+import {BooksDataModule} from '@books-dl';
 import {UserDataModule} from '@user-dl';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -26,10 +27,11 @@ import {AppComponent} from './app.component';
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
+    MatProgressSpinnerModule,
     AppRoutingModule,
     AppCommonModule,
     UserDataModule,
-    MatProgressSpinnerModule,
+    BooksDataModule
   ],
   providers: [
     { provide: APP_CONSTANTS, useValue: CONSTANTS },

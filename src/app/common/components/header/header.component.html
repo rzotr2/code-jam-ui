@@ -3,27 +3,31 @@
     <mat-toolbar>
       <mat-toolbar-row>
         <a mat-stroked-button
-           #homeLink="routerLinkActive"
            routerLinkActive
            routerLink="home"
-           [color]="homeLink.isActive ? 'primary' : null">
+           color="primary">
           RxAudio
         </a>
         <span class="spacer"></span>
-        <nav>
-          <a mat-button
-             #loginLink="routerLinkActive"
-             routerLinkActive
-             routerLink="login"
-             [color]="loginLink.isActive ? 'primary' : null">
-            Logout
-          </a>
+        <nav class="nav">
           <a mat-button
              #profileLink="routerLinkActive"
              routerLinkActive
              routerLink="me"
              [color]="profileLink.isActive ? 'primary' : null">
             Profile
+          </a>
+          <a mat-button
+             #homeLink="routerLinkActive"
+             routerLinkActive
+             routerLink="home"
+             [color]="homeLink.isActive ? 'primary' : null">
+            Home
+          </a>
+          <a mat-stroked-button
+             routerLink="login"
+             color="warn">
+            Logout
           </a>
         </nav>
       </mat-toolbar-row>
@@ -36,14 +40,20 @@
     <mat-toolbar>
       <mat-toolbar-row>
         <a mat-stroked-button
-           #homeLink="routerLinkActive"
            routerLinkActive
            routerLink="home"
-           [color]="homeLink.isActive ? 'primary' : null">
+           color="primary">
           RxAudio
         </a>
         <span class="spacer"></span>
-        <nav>
+        <nav class="nav">
+          <a mat-button
+             #homeLink="routerLinkActive"
+             routerLinkActive
+             routerLink="home"
+             [color]="homeLink.isActive ? 'primary' : null">
+            Home
+          </a>
           <a mat-button
              #loginLink="routerLinkActive"
              routerLinkActive
@@ -51,7 +61,7 @@
              [color]="loginLink.isActive ? 'primary' : null">
             Login
           </a>
-          <a mat-button
+          <a mat-stroked-button
              #registerLink="routerLinkActive"
              routerLinkActive
              routerLink="register"

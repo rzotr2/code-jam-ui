@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 
 import {BooksComponent} from './books.component';
 import {BooksRoutingModule} from './books-routing.module';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import {BooksRoutingModule} from './books-routing.module';
   ],
   imports: [
     CommonModule,
-    BooksRoutingModule
+    BooksRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ],
 })
 export class BooksModule {

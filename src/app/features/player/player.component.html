@@ -1,45 +1,45 @@
-<div class="d-flex justify-content-center align-items-center h-100">
-  <div class="text-center w-50">
-    <ng-container *ngIf="audioStreamService.state$ | async as audioState">
-      <p class="d-flex justify-content-between text-white">
-        <span>{{audioState.currentTime | formatTime}}</span>
-        <span>{{audioState.duration | formatTime}}</span>
-      </p>
+<ng-container *ngIf="audioStreamService.state$ | async as audioState">
+  <div class="w-full d-flex j-center t-center a-center">
+    <div class="w-50">
+      <ng-container *ngIf="audioState.isReady">
+        <p>
+          <span>{{audioState.currentTime | formatTime}}</span>
+          <span>/</span>
+          <span>{{audioState.duration | formatTime}}</span>
+        </p>
 
-      <button
-        (click)="seekByPercent(audioState, $event)"
-        class="progress btn btn-primary bg-transparent w-100 p-0 mb-4"
-      >
-        <div class="progress-outer bg-secondary w-100">
+        <button
+          (click)="seekByPercent(audioState, $event)"
+          class="w-full progress"
+        >
           <div
             [style.width]="audioState.progressPercentage + '%'"
-            class="progress-inner bg-primary"
+            class="progress-inner"
           >
           </div>
+        </button>
+
+        <div class="controls d-flex a-center j-center">
+          <button mat-raised-button color="primary"
+                  (click)="audioStreamService.seek(audioState.currentTime, -30)"
+          >
+            &#9198;
+          </button>
+
+          <button mat-raised-button color="primary"
+                  (click)="togglePlay(audioState.isPlaying)"
+          >
+            <ng-container *ngIf="!audioState.isPlaying">&#9654;</ng-container>
+            <ng-container *ngIf="audioState.isPlaying">&#9208;</ng-container>
+          </button>
+
+          <button mat-raised-button color="primary"
+                  (click)="audioStreamService.seek(audioState.currentTime, 30)"
+          >
+            &#9197;
+          </button>
         </div>
-      </button>
-
-      <button
-        (click)="audioStreamService.seek(audioState.currentTime, -30)"
-        class="btn btn-sm btn-warning me-2"
-      >
-        &#9198;
-      </button>
-
-      <button
-        (click)="togglePlay(audioState.isPlaying)"
-        class="btn btn-lg btn-primary me-2"
-      >
-        <ng-container *ngIf="!audioState.isPlaying">&#9654;</ng-container>
-        <ng-container *ngIf="audioState.isPlaying">&#9208;</ng-container>
-      </button>
-
-      <button
-        (click)="audioStreamService.seek(audioState.currentTime, 30)"
-        class="btn btn-sm btn-warning"
-      >
-        &#9197;
-      </button>
-    </ng-container>
+      </ng-container>
+    </div>
   </div>
-</div>
+</ng-container>

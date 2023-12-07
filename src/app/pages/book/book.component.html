@@ -1,1 +1,9 @@
-<p>book works</p>
+<div class="h-100 d-flex j-center a-center">
+  <ng-container *ngIf="book?.url as url; else noUrl">
+    <app-player [url]="url"></app-player>
+  </ng-container>
+</div>
+
+<ng-template #noUrl>
+  <p>No URL</p>
+</ng-template>

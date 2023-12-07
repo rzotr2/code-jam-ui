@@ -66,6 +66,7 @@ export namespace RxAudio {
     currentTime: number;
     duration: number;
     progressPercentage: number;
+    isReady: boolean;
   }
 }
 
@@ -112,6 +113,12 @@ export class AudioStreamService {
     startWith(this.audio.currentTime ?? 0),
   );
 
+  public readonly isReady$: Observable<boolean> = this.eventsStream$.pipe(
+    filterEvent(RxAudio.RX_AUDIO_EVENT_TYPES.CAN_PLAY),
+    map(() => true),
+    startWith(false),
+  );
+
   public readonly duration$: Observable<number> = this.eventsStream$.pipe(
     filterEvent(RxAudio.RX_AUDIO_EVENT_TYPES.CAN_PLAY, RxAudio.RX_AUDIO_EVENT_TYPES.DURATION_CHANGE),
     map(() => (this.audio.duration)),
@@ -129,6 +136,7 @@ export class AudioStreamService {
     currentTime: this.currentTime$,
     duration: this.duration$,
     progressPercentage: this.progressPercentage$,
+    isReady: this.isReady$
   });
 
   public setSource(src: string): void {

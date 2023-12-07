@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
+import {BooksDataService} from '@books-dl';
+
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
@@ -7,5 +9,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BooksComponent {
+  public booksState$ = this.booksDataService.books$;
 
+  constructor(
+    private booksDataService: BooksDataService,
+  ) {
+  }
 }

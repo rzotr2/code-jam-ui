@@ -31,6 +31,16 @@ export class UserDataService {
         );
     }
 
+    public updateCurrent(user: User): Observable<HttpResponse<User>> {
+      return this.userRestService.updateCurrent(user).pipe(
+        tap((result) => {
+          if (!result.failed) {
+            this.userSubject.next(result.response);
+          }
+        }),
+      );
+    }
+
     public clearUserData(): void {
         this.userSubject.next(null);
     }

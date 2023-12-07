@@ -1,0 +1,24 @@
+<div class="h-100 d-flex j-center">
+  <div class="w-full">
+    <div class="d-flex f-wrap py-1">
+      <ng-container *ngIf="booksState$ | async as booksState">
+        <ng-container *ngFor="let book of booksState.list">
+          <div class="w-50 p-1">
+            <mat-card class="w-full">
+              <mat-card-header class="t-center j-center">
+                <h3 mat-card-title>{{book.name}}</h3>
+              </mat-card-header>
+              <mat-card-content>
+              </mat-card-content>
+              <mat-card-footer>
+                <mat-card-actions>
+                  <a routerLink="/book/{{book.name}}" color="primary" class="w-full" mat-raised-button>Listen</a>
+                </mat-card-actions>
+              </mat-card-footer>
+            </mat-card>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
