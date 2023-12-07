@@ -15,7 +15,9 @@
 }
 
 .progress-inner {
+  width: 0;
   height: inherit;
+  display: block;
 }
 
 .progress-inner {

@@ -4,6 +4,8 @@ import {MatButtonModule} from '@angular/material/button';
 
 import {PlayerComponent} from './player.component';
 import {FormatTimePipe} from './pipes/format-time.pipe';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import {FormatTimePipe} from './pipes/format-time.pipe';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatIconModule,
+    MatCardModule,
   ]
 })
 export class PlayerModule {
