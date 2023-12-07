@@ -1,15 +1,7 @@
 <ng-container *ngIf="shouldShow">
-  <ng-container *ngIf="validationErrors | keyvalue as errorsList; else formErrorsRef">
-    <ng-container *ngIf="errorsList && errorsList[0]">
-      <mat-error *ngIf="errorsMap[errorsList[0].key]">{{errorsMap[errorsList[0].key]}}</mat-error>
+  <ng-container *ngIf="(validationErrors | keyvalue) as errors">
+    <ng-container *ngIf="errors[0]">
+      <mat-error>{{errorsMap[errors[0].key]}}</mat-error>
     </ng-container>
   </ng-container>
-
-  <ng-template #formErrorsRef>
-    <ng-container *ngIf="formErrors | keyvalue as formErrorsList">
-      <ng-container *ngIf="formErrorsList && formErrorsList[0]">
-        <mat-error *ngIf="errorsMap[formErrorsList[0].key]">{{errorsMap[formErrorsList[0].key]}}</mat-error>
-      </ng-container>
-    </ng-container>
-  </ng-template>
 </ng-container>

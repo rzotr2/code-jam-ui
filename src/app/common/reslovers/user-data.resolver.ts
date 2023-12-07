@@ -1,10 +1,11 @@
 import {ResolveFn} from '@angular/router';
 import {inject} from '@angular/core';
 
-import {UserDataService} from '@user-dl';
-import {of, switchMap} from 'rxjs';
+import {map, of, switchMap} from 'rxjs';
 
-export const userDataResolver: ResolveFn<any> = () => {
+import {UserDataService} from '@user-dl';
+
+export const userDataResolver: ResolveFn<boolean> = () => {
     const userDataService = inject(UserDataService);
 
     return userDataService.isAuthorized$.pipe(
@@ -14,7 +15,7 @@ export const userDataResolver: ResolveFn<any> = () => {
             }
 
             if (localStorage.getItem('token')) {
-                return userDataService.loadCurrent();
+                return userDataService.loadCurrent().pipe(map(user => !!user));
             }
 
             return of(true);

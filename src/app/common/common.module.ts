@@ -9,19 +9,23 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {FormFieldErrorsComponent} from './components/form-field-errors/form-field-errors.component';
+import {RoutingCommonService} from './services/routing-common.service';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
+import {MergeErrorsPipe} from './pipes/merge-errors.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    FormFieldErrorsComponent
+    FormFieldErrorsComponent,
+    MergeErrorsPipe
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    FormFieldErrorsComponent
+    FormFieldErrorsComponent,
+    MergeErrorsPipe
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,8 @@ import {FooterComponent} from './components/footer/footer.component';
     RouterLink,
     RouterLinkActive,
     MatFormFieldModule
-  ]
+  ],
+  providers: [RoutingCommonService]
 })
 export class AppCommonModule {
 }

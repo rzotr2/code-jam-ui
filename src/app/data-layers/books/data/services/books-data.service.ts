@@ -23,7 +23,6 @@ export class BooksDataService {
       count: books.length,
       entities: books.reduce((entities, book) => {
         entities[book.id] = book;
-
         return entities;
       }, {})
     })),
@@ -37,7 +36,7 @@ export class BooksDataService {
   public loadAll(queryParams: BookQueryParams = {}) {
     return this.booksRestService.getAll(queryParams).pipe(
       tap(result => {
-        if (!result.failed) {
+        if (result.succeeded) {
           this.booksSubject.next(result.response);
         }
       }),
@@ -50,12 +49,14 @@ export class BooksDataService {
 
     return this.booksRestService.getOne(name).pipe(
       tap(result => {
-        if (!result.failed) {
-          if (isAlreadyExist) {
-            this.booksSubject.next(books.map(book => book.id === name ? result.response : book));
-          } else {
-            this.booksSubject.next([...books, result.response]);
-          }
+        if (result.failed) {
+          return;
+        }
+
+        if (isAlreadyExist) {
+          this.booksSubject.next(books.map(book => book.id === name ? result.response : book));
+        } else {
+          this.booksSubject.next([...books, result.response]);
         }
       }),
     );

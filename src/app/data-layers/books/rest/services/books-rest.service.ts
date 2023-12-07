@@ -23,13 +23,13 @@ export class BooksRestService {
     }, {});
 
     return this.http.get<Book[]>(this.baseUrl, {params}).pipe(
-      transformResponse<Book[]>(),
+      transformResponse(),
     );
   }
 
   public getOne(name: string) {
     return this.http.get<Book>(this.baseUrlId(name)).pipe(
-      transformResponse<Book>(),
+      transformResponse(),
     );
   }
 }

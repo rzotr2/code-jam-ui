@@ -1,28 +1,31 @@
-<div class="h-100 d-flex j-center a-center">
+<ng-container *ngIf="user$ | async as user">
+  <div class="h-100 d-flex j-center a-center">
     <mat-card class="w-full w-lg-75">
-        <ng-container *ngIf="user$ | async as user">
-            <mat-card-header>
-                <h1 mat-card-title>{{user.name}}</h1>
-            </mat-card-header>
+      <mat-card-header>
+        <h1 mat-card-title>{{user.name}}</h1>
+      </mat-card-header>
 
-            <mat-card-content>
-                <mat-form-field floatLabel="always" appearance="outline" class="w-full">
-                    <mat-label>Bio</mat-label>
-                    <textarea cdkTextareaAutosize
-                              cdkAutosizeMinRows="1"
-                              [ngModel]="user.about"
-                              (ngModelChange)="bio = $event"
-                              matInput
-                    ></textarea>
-                    <ng-container *ngIf="user.about !== bio && !!bio">
-                        <button (click)="saveBio(user, bio)" mat-stroked-button color="primary">Save bio</button>
-                    </ng-container>
-                </mat-form-field>
-                <p>Created books</p>
-                <ng-container *ngFor="let book of booksList$ | async">
-                  <a mat-stroked-button color="primary" routerLink="/book/{{book.name}}">{{book}}</a>
-                </ng-container>
-            </mat-card-content>
+      <mat-card-content>
+        <mat-form-field floatLabel="always" appearance="outline" class="w-full">
+          <mat-label>Bio</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="1"
+            [ngModel]="user.about"
+            (ngModelChange)="bio = $event"
+          >
+          </textarea>
+          <ng-container *ngIf="!!bio && user.about !== bio">
+            <button (click)="saveBio(user, bio)" mat-stroked-button color="primary">Save bio</button>
+          </ng-container>
+        </mat-form-field>
+
+        <p>Created books</p>
+        <ng-container *ngFor="let book of (booksState$ | async).list">
+          <a mat-stroked-button color="primary" routerLink="/book/{{book.name}}">{{book}}</a>
         </ng-container>
+      </mat-card-content>
     </mat-card>
-</div>
+  </div>
+</ng-container>

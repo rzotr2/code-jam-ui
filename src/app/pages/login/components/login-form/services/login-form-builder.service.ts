@@ -23,13 +23,13 @@ export class LoginFormBuilderService {
   public init(): FormGroup<LoginFormGroup> {
     return this.fb.group({
       name: this.fb.control(
-        null,
+        '',
         [
           Validators.required,
         ]
       ),
       password: this.fb.control(
-        null,
+        '',
         [
           Validators.required,
         ]

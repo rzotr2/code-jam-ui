@@ -1,7 +1,7 @@
 <ng-container *ngIf="audioStreamService.state$ | async as audioState">
-  <div class="w-full d-flex j-center t-center a-center">
-    <div class="w-50">
-      <ng-container *ngIf="audioState.isReady">
+  <ng-container *ngIf="audioState.isReady">
+    <div class="w-full d-flex j-center t-center a-center">
+      <div class="w-50">
         <p>
           <span>{{audioState.currentTime | formatTime}}</span>
           <span>/</span>
@@ -39,7 +39,7 @@
             &#9197;
           </button>
         </div>
-      </ng-container>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </ng-container>

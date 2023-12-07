@@ -13,7 +13,6 @@ export class FormFieldErrorsComponent {
   @Input() shouldShow = true;
   @Input() errorsMap: Record<string, string> = this.CONSTANTS.ErrorMaps.DefaultErrorsMap;
   @Input() validationErrors: ValidationErrors = {};
-  @Input() formErrors: ValidationErrors = {};
 
   constructor(
     @Inject(APP_CONSTANTS) private readonly CONSTANTS: AppConstantsType,

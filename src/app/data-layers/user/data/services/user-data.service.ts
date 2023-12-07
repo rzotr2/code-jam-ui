@@ -9,39 +9,37 @@ import {User} from '../../models';
 
 @Injectable()
 export class UserDataService {
-    private userSubject = new BehaviorSubject<User>(null);
+  private userSubject = new BehaviorSubject<User>(null);
 
-    public currentUser$ = this.userSubject.asObservable();
-    public isAuthorized$ = this.currentUser$.pipe(
-        map(user => !!user),
+  public currentUser$ = this.userSubject.asObservable();
+  public isAuthorized$ = this.currentUser$.pipe(map(user => !!user));
+
+  constructor(
+    private userRestService: UserRestService,
+  ) {
+  }
+
+  public loadCurrent(): Observable<HttpResponse<User>> {
+    return this.userRestService.getCurrent().pipe(
+      tap((result) => {
+        if (result.succeeded) {
+          this.userSubject.next(result.response);
+        }
+      }),
     );
+  }
 
-    constructor(
-        private userRestService: UserRestService,
-    ) {
-    }
+  public updateCurrent(user: User): Observable<HttpResponse<User>> {
+    return this.userRestService.updateCurrent(user).pipe(
+      tap((result) => {
+        if (result.succeeded) {
+          this.userSubject.next(result.response);
+        }
+      }),
+    );
+  }
 
-    public loadCurrent(): Observable<HttpResponse<User>> {
-        return this.userRestService.getCurrent().pipe(
-            tap((result) => {
-                if (!result.failed) {
-                    this.userSubject.next(result.response);
-                }
-            }),
-        );
-    }
-
-    public updateCurrent(user: User): Observable<HttpResponse<User>> {
-      return this.userRestService.updateCurrent(user).pipe(
-        tap((result) => {
-          if (!result.failed) {
-            this.userSubject.next(result.response);
-          }
-        }),
-      );
-    }
-
-    public clearUserData(): void {
-        this.userSubject.next(null);
-    }
+  public clearUserData(): void {
+    this.userSubject.next(null);
+  }
 }

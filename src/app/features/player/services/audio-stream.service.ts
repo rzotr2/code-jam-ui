@@ -125,9 +125,15 @@ export class AudioStreamService {
     startWith(this.audio.duration ?? 0),
   );
 
-  public readonly progressPercentage$: Observable<number> = this.duration$.pipe(
-    withLatestFrom(this.currentTime$),
-    map(([duration, currentTime]) => (Math.ceil((currentTime / duration) * 100))),
+  public readonly progressPercentage$: Observable<number> = this.currentTime$.pipe(
+    withLatestFrom(this.duration$),
+    map(([currentTime, duration]) => {
+      if (isNaN(duration) || isNaN(currentTime)) {
+        return 0;
+      }
+
+      return (Math.ceil((currentTime / duration) * 100));
+    }),
     startWith(0),
   );
 

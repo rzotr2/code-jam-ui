@@ -6,6 +6,7 @@ import {catchError, map, Observable, of, OperatorFunction, tap} from 'rxjs';
 
 export interface HttpResponse<T> {
   failed: boolean;
+  succeeded: boolean;
   response?: T,
   error?: any;
 }
@@ -23,9 +24,10 @@ export const defaultRequestMessagesMap: RequestMessagesMap = {
 export const transformResponse = <T>(): OperatorFunction<T, HttpResponse<T>> => {
   return (source: Observable<T>): Observable<HttpResponse<T>> => {
     return source.pipe(
-        map((response: T) => ({failed: false, response})),
+        map((response: T) => ({failed: false, succeeded: true, response})),
         catchError((httpErrorResponse: HttpErrorResponse) => of(({
           failed: true,
+          succeeded: false,
           error: httpErrorResponse.error,
         }))),
     );
@@ -44,7 +46,7 @@ export const showMessage = <T>(
             snackBar.open(requestMessagesMap.failure, undefined, {duration});
           }
 
-          if (!response.failed && requestMessagesMap.success) {
+          if (response.succeeded && requestMessagesMap.success) {
             snackBar.open(requestMessagesMap.success, undefined, {duration});
           }
         }),

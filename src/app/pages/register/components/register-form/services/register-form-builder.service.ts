@@ -34,7 +34,7 @@ export class RegisterFormBuilderService {
   public init(): FormGroup<RegisterFormGroup> {
     return this.fb.group({
       name: this.fb.control(
-        null,
+        '',
         [
           Validators.required,
           Validators.minLength(3),
@@ -43,18 +43,13 @@ export class RegisterFormBuilderService {
         ]
       ),
       password: this.fb.control(
-        null,
+        '',
         [
           Validators.required,
           Validators.pattern(this.CONSTANTS.PATTERN_CONSTANTS.STRONG_PASSWORD),
         ]
       ),
-      repeatPassword: this.fb.control(
-        null,
-        [
-          Validators.required,
-        ]
-      ),
+      repeatPassword: this.fb.control(''),
     }, { validators: [AppValidators.isValueEqualValidator('repeatPassword', 'password')] });
   }
 

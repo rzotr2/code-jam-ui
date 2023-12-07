@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 
-import {map, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 
 import {User, UserDataService} from '@user-dl';
 import {BooksDataService} from '@books-dl';
@@ -15,10 +15,9 @@ export class MyProfileComponent implements OnDestroy {
   private subscriptions = new Subscription();
 
   public user$ = this.userDataService.currentUser$;
-  public booksList$ = this.booksDataService.books$.pipe(
-    map(booksState => booksState.list),
-  );
-  public bio = null;
+  public booksState$ = this.booksDataService.books$;
+
+  public bio = '';
 
   constructor(
     private userDataService: UserDataService,

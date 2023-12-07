@@ -20,14 +20,14 @@ export class UserRestService {
 
     public getCurrent() {
         return this.http.get<User>(this.baseUrl).pipe(
-            transformResponse<User>()
+            transformResponse()
         );
     }
 
     public updateCurrent(user: User) {
       return this.http.put<User>(this.baseUrl, user).pipe(
-        transformResponse<User>(),
-        showMessage<User>(this.snackBar, {
+        transformResponse(),
+        showMessage(this.snackBar, {
           success: 'Profile successfully updated.',
           failure: 'Failed to update your profile.',
         }),

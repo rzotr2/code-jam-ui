@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
 
+import {of, Subscription, switchMap} from 'rxjs';
+
+import {RoutingCommonService} from '@common';
 import {AuthRestService} from '@auth-dl';
 
 import {RegisterFormBuilderService, RegisterFormGroup} from './services/register-form-builder.service';
@@ -13,7 +15,9 @@ import {RegisterFormBuilderService, RegisterFormGroup} from './services/register
   providers: [RegisterFormBuilderService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterFormComponent {
+export class RegisterFormComponent implements OnDestroy {
+  private subscriptions = new Subscription();
+
   public hideMainPass = true;
   public hideRepeatPass = true;
 
@@ -30,19 +34,26 @@ export class RegisterFormComponent {
   constructor(
     private registerFormBuilderService: RegisterFormBuilderService,
     private authRestService: AuthRestService,
-    private router: Router
+    private routingCommonService: RoutingCommonService,
   ) {
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   public onSubmit(registerFormGroup: FormGroup<RegisterFormGroup>): void {
     if (registerFormGroup.valid) {
       const {repeatPassword, ...formValue} = registerFormGroup.getRawValue();
 
-      this.authRestService.register(formValue).subscribe((result) => {
-        if (!result.failed) {
-          this.router.navigate(['/login']);
-        }
-      });
+      this.subscriptions.add(
+        this.authRestService.register(formValue).pipe(
+          switchMap((result) => result.succeeded ?
+            this.routingCommonService.getNavigationStream('/login') :
+            of(result)
+          ),
+        ).subscribe(),
+      );
     }
   }
 }

@@ -22,3 +22,9 @@ export * from './interceptors/auth-errors.interceptor';
 /* Resolvers */
 export * from './reslovers/logout.resolver';
 export * from './reslovers/user-data.resolver';
+
+/* Pipes */
+export * from './pipes/merge-errors.pipe';
+
+/* Services */
+export * from './services/routing-common.service';

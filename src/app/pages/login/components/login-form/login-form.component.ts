@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
 
+import {of, Subscription, switchMap} from 'rxjs';
+
+import {RoutingCommonService} from '@common';
 import {AuthRestService} from '@auth-dl';
 
 import {LoginFormBuilderService, LoginFormGroup} from './services/login-form-builder.service';
@@ -13,7 +15,9 @@ import {LoginFormBuilderService, LoginFormGroup} from './services/login-form-bui
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [LoginFormBuilderService]
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnDestroy {
+  private subscriptions = new Subscription();
+
   public hideMainPass = true;
 
   public loginFormGroup = this.loginFormBuilderService.init();
@@ -25,22 +29,30 @@ export class LoginFormComponent {
 
   constructor(
     private loginFormBuilderService: LoginFormBuilderService,
+    private routingCommonService: RoutingCommonService,
     private authRestService: AuthRestService,
-    private router: Router
   ) {
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   public onSubmit(loginFormGroup: FormGroup<LoginFormGroup>): void {
     if (loginFormGroup.valid) {
       const formValue = loginFormGroup.getRawValue();
 
-      this.authRestService.login(formValue).subscribe((result) => {
-        if (!result.failed) {
-          localStorage.setItem('token', result.response.token);
+      this.subscriptions.add(
+        this.authRestService.login(formValue).pipe(
+          switchMap((result) => {
+            if (result.succeeded) {
+              localStorage.setItem('token', result.response.token);
+            }
 
-          this.router.navigate(['/home']);
-        }
-      });
+            return result.succeeded ? this.routingCommonService.getNavigationStream('/home') : of(result);
+          }),
+        ).subscribe(),
+      );
     }
   }
 }

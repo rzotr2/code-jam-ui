@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
-import {switchMap} from 'rxjs';
+import {Subscription, switchMap} from 'rxjs';
 
 import {Book, BooksRestService} from '@books-dl';
 
@@ -11,8 +11,10 @@ import {Book, BooksRestService} from '@books-dl';
   styleUrls: ['./book.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookComponent implements OnInit {
-  book: Book;
+export class BookComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription();
+
+  public book: Book;
 
   constructor(
     private booksRestService: BooksRestService,
@@ -22,13 +24,17 @@ export class BookComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.route.params.pipe(
-      switchMap(({id}) => {
-        return this.booksRestService.getOne(id);
-      }),
-    ).subscribe((result) => {
-      this.book = result.response;
-      this.changeDetectorRef.detectChanges();
-    });
+    this.subscriptions.add(
+      this.route.params.pipe(
+        switchMap(({id}) => this.booksRestService.getOne(id)),
+      ).subscribe((result) => {
+        this.book = result.response;
+        this.changeDetectorRef.detectChanges();
+      })
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
