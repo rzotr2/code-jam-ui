@@ -132,7 +132,7 @@ export class AudioStreamService {
         return 0;
       }
 
-      return (Math.ceil((currentTime / duration) * 100));
+      return (currentTime / duration) * 100;
     }),
     startWith(0),
   );

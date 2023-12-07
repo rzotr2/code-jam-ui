@@ -1,45 +1,40 @@
 <ng-container *ngIf="audioStreamService.state$ | async as audioState">
   <ng-container *ngIf="audioState.isReady">
     <div class="w-full d-flex j-center t-center a-center">
-      <div class="w-50">
-        <p>
-          <span>{{audioState.currentTime | formatTime}}</span>
-          <span>/</span>
-          <span>{{audioState.duration | formatTime}}</span>
-        </p>
-
-        <button
-          (click)="seekByPercent(audioState, $event)"
-          class="w-full progress"
-        >
-          <div
-            [style.width]="audioState.progressPercentage + '%'"
-            class="progress-inner"
-          >
-          </div>
-        </button>
-
-        <div class="controls d-flex a-center j-center">
-          <button mat-raised-button color="primary"
-                  (click)="audioStreamService.seek(audioState.currentTime, -30)"
-          >
-            &#9198;
+      <mat-card class="w-50 p-static">
+        <mat-card-header class="j-center">
+          <p mat-card-title>
+            <span>{{audioState.currentTime | formatTime}}</span>
+            <span>/</span>
+            <span>{{audioState.duration | formatTime}}</span>
+          </p>
+        </mat-card-header>
+        <mat-card-content class="w-full">
+          <button (click)="seekByPercent(audioState, $event)" class="w-full progress">
+            <div [style.width]="audioState.progressPercentage + '%'" class="progress-inner"></div>
           </button>
+        </mat-card-content>
+        <mat-card-footer>
+          <mat-card-actions class="j-center">
+            <button mat-icon-button color="primary" (click)="audioStreamService.seek(audioState.currentTime, -30)">
+              <mat-icon aria-hidden="false" aria-label="Rewind icon" fontIcon="fast_rewind"></mat-icon>
+            </button>
 
-          <button mat-raised-button color="primary"
-                  (click)="togglePlay(audioState.isPlaying)"
-          >
-            <ng-container *ngIf="!audioState.isPlaying">&#9654;</ng-container>
-            <ng-container *ngIf="audioState.isPlaying">&#9208;</ng-container>
-          </button>
+            <button mat-icon-button color="primary" (click)="togglePlay(audioState.isPlaying)">
+              <ng-container *ngIf="audioState.isPlaying">
+                <mat-icon aria-hidden="false" aria-label="Pause icon" fontIcon="pause"></mat-icon>
+              </ng-container>
+              <ng-container *ngIf="!audioState.isPlaying">
+                <mat-icon aria-hidden="false" aria-label="Play icon" fontIcon="play_arrow"></mat-icon>
+              </ng-container>
+            </button>
 
-          <button mat-raised-button color="primary"
-                  (click)="audioStreamService.seek(audioState.currentTime, 30)"
-          >
-            &#9197;
-          </button>
-        </div>
-      </div>
+            <button mat-icon-button color="primary" (click)="audioStreamService.seek(audioState.currentTime, 30)">
+              <mat-icon aria-hidden="false" aria-label="Fast forward icon" fontIcon="fast_forward"></mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card-footer>
+      </mat-card>
     </div>
   </ng-container>
 </ng-container>
