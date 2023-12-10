@@ -1,0 +1,5 @@
+<ng-container *ngIf="shouldBeShown">
+  <ng-container *ngFor="let error of validationErrors | keyvalue">
+    <p class="text-danger">{{errorMessagesMap[error.key]}}</p>
+  </ng-container>
+</ng-container>

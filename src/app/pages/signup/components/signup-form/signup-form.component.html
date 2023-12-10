@@ -1,0 +1,28 @@
+<form class="main-section d-flex justify-content-center" [formGroup]="signUpForm" (submit)="signUp(signUpForm)">
+  <div class="w-50">
+    <div class="mb-4">
+      <div class="mb-1">
+        <span class="text-white fs-3">Enter your username:</span>
+      </div>
+      <input type="text" class="form-control" formControlName="name" [class.border-danger]="nameControl.invalid && nameControl.touched">
+      <app-form-field-errors [shouldBeShown]="nameControl.touched" [validationErrors]="nameControl.errors"/>
+    </div>
+    <div class="mb-4">
+      <div class="mb-1">
+        <span class="text-white fs-3">Enter your password:</span>
+      </div>
+      <input type="password" class="form-control" formControlName="password" [class.border-danger]="passwordControl.invalid && passwordControl.touched">
+      <app-form-field-errors [shouldBeShown]="passwordControl.touched" [validationErrors]="passwordControl.errors"/>
+    </div>
+    <div class="mb-1">
+      <span class="text-white fs-3">Repeat your password:</span>
+    </div>
+    <div class="mb-5">
+      <input type="password" class="form-control" formControlName="repeatPassword" [class.border-danger]="repeatPasswordControl.invalid && repeatPasswordControl.touched">
+      <app-form-field-errors [shouldBeShown]="repeatPasswordControl.touched" [validationErrors]="repeatPasswordControl.errors | mergeObjects: signUpForm.errors" [errorMessagesMap]="errorMessagesMap"/>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-success py-2 px-5">Sign Up</button>
+    </div>
+  </div>
+</form>

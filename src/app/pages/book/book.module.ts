@@ -3,18 +3,18 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import {BookComponent} from './book.component';
 import {BookRoutingModule} from "./book-routing.module";
-import {PlayerModule} from "./player/player.module";
+import {PlayerComponent} from "./player/player.component";
 
 
 @NgModule({
   declarations: [
-    BookComponent
+    BookComponent,
+    PlayerComponent
   ],
   imports: [
     CommonModule,
     BookRoutingModule,
     NgOptimizedImage,
-    PlayerModule,
   ],
 })
 export class BookModule {

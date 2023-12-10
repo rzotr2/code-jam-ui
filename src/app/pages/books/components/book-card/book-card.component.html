@@ -1,4 +1,4 @@
-<a [routerLink]="'book/' + id" class="text-decoration-none">
+<a [routerLink]="'book/' + name" class="text-decoration-none">
   <div class="card-container p-4 d-flex rounded-4 flex-column justify-content-between h-100 text-decoration-none position-relative">
     <div class="books-section__card-title d-flex justify-content-center align-items-center h-100">
       <div class="card-title__logo col-3 me-4 border rounded-4 overflow-hidden d-flex align-content-center">
@@ -8,7 +8,7 @@
       <div class="h-100 d-flex flex-column justify-content-center">
         <div class="text-center">
           <div class="card-title__title text-center pb-3">
-            <a href="#" class="h5 text-white text-decoration-none">{{name}}</a>
+            <span class="h5 text-white text-decoration-none">{{name}}</span>
           </div>
           <div class="books-section__book-description">
           <span class="book-description__description text-secondary text-wrap text-center">
@@ -22,7 +22,7 @@
             <img [ngSrc]="'assets/icons.png'" alt="like" height="38" width="94">
           </div>
           <div class="book-links__link">
-            <a href="#" class="btn-custom px-4 py-2">Visit</a>
+            <span class="btn-custom px-4 py-2">Visit</span>
           </div>
         </div>
       </div>

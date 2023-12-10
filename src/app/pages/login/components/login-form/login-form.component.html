@@ -1,0 +1,21 @@
+<form class="main-section d-flex justify-content-center" [formGroup]="loginForm" (submit)="login(loginForm)">
+  <div class="w-50">
+    <div class="mb-4">
+      <div class="mb-1">
+        <span class="text-white fs-3">Enter your username:</span>
+      </div>
+      <input type="text" class="form-control" formControlName="name" [class.border-danger]="nameControl.invalid && nameControl.touched">
+      <app-form-field-errors [shouldBeShown]="nameControl.touched" [validationErrors]="nameControl.errors"/>
+    </div>
+    <div class="mb-5">
+      <div class="mb-1">
+        <span class="text-white fs-3">Enter your password:</span>
+      </div>
+      <input type="password" class="form-control" formControlName="password" [class.border-danger]="passwordControl.invalid && passwordControl.touched">
+      <app-form-field-errors [shouldBeShown]="passwordControl.touched" [validationErrors]="passwordControl.errors"/>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-success py-2 px-5">Submit</button>
+    </div>
+  </div>
+</form>
